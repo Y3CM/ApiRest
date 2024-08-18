@@ -6,6 +6,7 @@ import cors from "cors";
 import ProductosRutas from "./routes/ProductosRuta.js";
 import UsersRutas from "./routes/UserRutas.js"
 import CategoriasRutas from "./routes/CategoriasRutas.js"
+import PostsRutas from "./routes/PostsRutas.js"
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api",UsersRutas);
 app.use("/api", ProductosRutas);
 app.use("/api",CategoriasRutas);
+app.use("/api",PostsRutas)
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);

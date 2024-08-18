@@ -12,3 +12,22 @@ try {
     return res.status(500).json({ message: "Error en la consulta" });
 }
 }
+
+export const createCategoria = async (req, res) => {
+    try {
+        const { categoria, descripcion } = req.body;
+
+        if (!categoria) {
+            return res.status(400).json({ message: "Categoria es requerida" });
+        }
+
+        const [result] = await pool.query(
+            "INSERT INTO categorias (categoria, descripcion ) VALUES (?, ?)",
+            [categoria, descripcion ]
+        );
+
+        res.status(201).json({ id: result.insertId, categoria, descripcion });
+    } catch (error) {
+        return res.status(500).json({ message: "Error al crear el post" });
+    }
+};

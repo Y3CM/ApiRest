@@ -50,3 +50,39 @@ export const createPost = async (req, res) => {
     }
 };
 
+export const updatePost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { titulo, resumen, contenido, image, categoria, estado, autor } = req.body;
+        if (!titulo || !contenido ) {
+            return res.status(400).json({ message: "Título, contenido y autor son requeridos" });
+        }
+        const [result] = await pool.query(
+            "UPDATE posts SET titulo = ?, resumen = ?, contenido = ?, image = ?, categoria = ?, estado = ?, updated_at = NOW() WHERE id = ?",
+            [titulo, resumen, contenido, image, categoria, estado, id]
+        );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Post no encontrado" });
+        }
+        res.json({ id, titulo, resumen, contenido, image, categoria, estado, autor });
+    } catch (error) {
+        res.status(500).json({ message: "Error al actualizar el post" });
+    }
+};
+
+
+export const deletePost = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [result] = await pool.query("DELETE FROM posts WHERE id = ?", [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Post no encontrado" });
+        }
+
+        res.status(204).send(); 
+    } catch (error) {
+        return res.status(500).json({ message: "Error al eliminar el post" });
+    }
+};

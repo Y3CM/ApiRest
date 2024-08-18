@@ -5,7 +5,7 @@ import { getProductoById } from "../models/productosModel.js";
 const router = Router();
 
 router.get("/productos", getAllProductos);
-router.get("/productos/:id", getProductoById); // Ruta para un producto específico
+router.get("/productos/:id", getProductoById);
 
 
 export default router;

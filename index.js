@@ -10,6 +10,7 @@ import ComentariosRutas from "./routes/ComentariosRutas.js";
 import ReviewRutas from "./routes/ReviewRutas.js";
 import PostRutas from "./routes/PostsRutas.js";
 import DetallesRutas from "./routes/DetallesRutas.js";
+import PedidosRutas from "./routes/PedidosRutas.js"
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use("/api",ComentariosRutas);
 app.use("/api",ReviewRutas);
 app.use("/api",PostRutas);
 app.use("/api",DetallesRutas);
+app.use("/api",PostRutas)
+app.use("/api",PedidosRutas)
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);

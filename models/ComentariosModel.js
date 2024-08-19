@@ -18,7 +18,7 @@ export const createComentarios = async (req, res) => {
         const { contenido, autor, posts_id, posts_autor } = req.body;
 
         if (!contenido || !autor) {
-            return res.status(400).json({ message: "Categoria es requerida" });
+            return res.status(400).json({ message: "Contenido y o autor es requerido" });
         }
 
         const [result] = await pool.query(
@@ -30,6 +30,6 @@ export const createComentarios = async (req, res) => {
     } catch (error) {
 
         console.error("error al crear los comentarios", error);
-        return res.status(500).json({ message: "Error al crear el post" });
+        return res.status(500).json({ message: "Error al crear el comentario" });
     }
 };

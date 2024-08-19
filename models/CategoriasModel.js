@@ -28,6 +28,6 @@ export const createCategoria = async (req, res) => {
 
         res.status(201).json({ id: result.insertId, categoria, descripcion });
     } catch (error) {
-        return res.status(500).json({ message: "Error al crear el post" });
+        return res.status(500).json({ message: "Error al crear la categoria" });
     }
 };

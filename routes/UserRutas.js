@@ -1,13 +1,25 @@
 import { Router } from "express";
-
-import { getAllUsers, getUser, createUser } from "../models/UsersModel.js";
+import { getAllUsers, getUser, createUser, updateUser, deleteUser, login } from "../models/UsersModel.js";
+import authMiddleware from '../middlewares/authMiddleware.js'; // Asegúrate de ajustar la ruta al archivo
 
 const router = Router();
 
-router.get("/users", getAllUsers);
+// Iniciar sesión (sin protección)
+router.post("/login", login);
 
-router.get("/users/:id", getUser);
+// Obtener todos los usuarios (protegido)
+router.get("/users", authMiddleware, getAllUsers);
 
-router.post("/users", createUser);
+// Obtener un usuario específico por ID (protegido)
+router.get("/users/:id", authMiddleware, getUser);
+
+// Crear un nuevo usuario (protegido)
+router.post("/users", authMiddleware, createUser);
+
+// Actualizar un usuario existente por ID (protegido)
+router.put("/users/:id", authMiddleware, updateUser);
+
+// Eliminar un usuario por ID (protegido)
+router.delete("/users/:id", authMiddleware, deleteUser);
 
 export default router;

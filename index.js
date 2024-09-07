@@ -1,4 +1,6 @@
 console.log("Api Rest SENA ....");
+import dotenv from 'dotenv';
+dotenv.config();
 
 import { PORT } from "./config.js";
 import express from "express";

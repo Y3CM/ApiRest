@@ -2,12 +2,18 @@ import { Router } from "express";
 
 import { getAllPosts, getPost, createPost, updatePost, deletePost } from "../models/PostModel.js";
 
+import authMiddleware from '../middlewares/authMiddleware.js';
+
 const router = Router();
 
-router.get("/posts",getAllPosts);
-router.get("/posts/:id",getPost);
-router.post("/posts",createPost);
-router.put("/posts/:id",updatePost);
-router.delete("/posts/:id",deletePost);
+router.get("/posts",authMiddleware,getAllPosts);
+
+router.get("/posts/:id",authMiddleware,getPost);
+
+router.post("/posts",authMiddleware,createPost);
+
+router.put("/posts/:id",authMiddleware,updatePost);
+
+router.delete("/posts/:id",authMiddleware,deletePost);
 
 export default router;

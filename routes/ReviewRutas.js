@@ -5,7 +5,7 @@ import {
   createReview,
   updateReview,
   deleteReview
-} from "../controllers/reviewController.js"; 
+} from "../models/ReviewModel.js"; 
 import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = Router();
